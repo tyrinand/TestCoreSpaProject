@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
+import Typography from '@material-ui/core/Typography';
 
 const Info = () => {
 

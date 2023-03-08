@@ -6,15 +6,14 @@ import { useState, useEffect } from 'react';
 import { get, post, put } from './../../Utils/Fetch';
 import Loader from '../Common/Loader/Loader';
 import ShowError from '../Common/ShowError/ShowError';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import { serverUrlSales, serverUrlSalesForm } from './../../Interface/ServerRouteConst';
 import { useParams } from 'react-router-dom';
 import SelectList from './SelectList';
-import { SelectChangeEvent } from '@mui/material/Select';
 import { useHistory } from 'react-router-dom';
 
 interface IProps {
@@ -129,13 +128,13 @@ const FormSale = (props: IProps) => {
 	};
 
 
-	const handleChangeClient = (event: SelectChangeEvent) => {
+	const handleChangeClient = (event: React.ChangeEvent<{ value: unknown }>) => {
 		const value: number = Number(event.target.value);
 		const newSale: ISale = { ...sale, idClient: value };
 		setSale(newSale);
 	};
 
-	const handleChangeSoft = (event: SelectChangeEvent) => {
+	const handleChangeSoft = (event: React.ChangeEvent<{ value: unknown }>) => {
 		const soft_id: number = Number(event.target.value);
 		const softSelected = softs.find(soft => soft.id === soft_id);
 		if (softSelected)
@@ -185,7 +184,7 @@ const FormSale = (props: IProps) => {
 								labelTitle="Client"
 								labelId="sale-client-label"
 								htmlId="sale-client"
-								value={sale.idClient === null ? undefined : sale.idClient.toString()}
+								value={sale.idClient === null ? null : sale.idClient.toString()}
 								handelChange={handleChangeClient}
 								items={clients}
 								emptyLabel="Add clients"
@@ -196,7 +195,7 @@ const FormSale = (props: IProps) => {
 								labelTitle="Soft"
 								labelId="sale-soft-label"
 								htmlId="sale-soft"
-								value={sale.idSoft === null ? undefined : sale.idSoft.toString()}
+								value={sale.idSoft === null ? null : sale.idSoft.toString()}
 								handelChange={handleChangeSoft}
 								items={softs}
 								emptyLabel="Add software"

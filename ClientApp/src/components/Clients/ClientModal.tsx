@@ -1,48 +1,48 @@
 import React from 'react';
-import { makeStyles } from 'tss-react/mui';
+import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Modal from '@mui/material/Modal';
-import {IClient} from './../../Interface/MainTypes';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import CloseIcon from '@mui/icons-material/Close';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
+import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
+import { IClient } from './../../Interface/MainTypes';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import CloseIcon from '@material-ui/icons/Close';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 interface IClientModal {
-    client : IClient,
-    iconClassName : string
+  client: IClient,
+  iconClassName: string
 }
 
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    paper: {
-        position: 'absolute',
-        width: 500,
-        top: "10%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        backgroundColor : "#fff",
-        textAlign : "center",
-        padding : "25px"
-      },
-    titles :
-    {
-        fontWeight : 'bold',
-    },
-    table :
-    {
-        width : "60%"
-    }}
-  });
+const useStyles = makeStyles({
+  paper: {
+    position: 'absolute',
+    width: 500,
+    top: "10%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    backgroundColor: "#fff",
+    textAlign: "center",
+    padding: "25px"
+  },
+  titles:
+  {
+    fontWeight: 'bold',
+  },
+  table:
+  {
+    width: "60%"
+  }
+}
+);
 
 
-export default function ClientModal(props : IClientModal) {
+export default function ClientModal(props: IClientModal) {
 
-  const { classes } = useStyles();
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -59,38 +59,38 @@ export default function ClientModal(props : IClientModal) {
     <div className={classes.paper}>
       <Grid container spacing={0} justifyContent="center">
         <Grid item md={11}>
-            <span>Customer Information</span>
+          <span>Customer Information</span>
         </Grid>
         <Grid item md={1}>
-            <CloseIcon 
-                className = {props.iconClassName}
-                onClick = {handleClose}
-            />
+          <CloseIcon
+            className={props.iconClassName}
+            onClick={handleClose}
+          />
         </Grid>
-    </Grid>
-    <br/>
-        <Grid container spacing={0} justifyContent="center">
-            <Table  size="small" className={classes.table} >
-                <TableBody>
-                    <TableRow key={client.name}>
-                        <TableCell className={classes.titles} align="left">Full name</TableCell>
-                        <TableCell  align="left">{client.name}</TableCell>
-                    </TableRow>
-                    <TableRow key={client.mark}>
-                        <TableCell className={classes.titles} align="left">Customer rating</TableCell>
-                        <TableCell align="left">{client.mark}</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </Grid>
+      </Grid>
+      <br />
+      <Grid container spacing={0} justifyContent="center">
+        <Table size="small" className={classes.table} >
+          <TableBody>
+            <TableRow key={client.name}>
+              <TableCell className={classes.titles} align="left">Full name</TableCell>
+              <TableCell align="left">{client.name}</TableCell>
+            </TableRow>
+            <TableRow key={client.mark}>
+              <TableCell className={classes.titles} align="left">Customer rating</TableCell>
+              <TableCell align="left">{client.mark}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </Grid>
     </div>
   );
 
   return (
     <>
-      <VisibilityIcon 
-        className = {props.iconClassName}
-        onClick = {handleOpen}
+      <VisibilityIcon
+        className={props.iconClassName}
+        onClick={handleOpen}
       />
       <Modal
         open={open}

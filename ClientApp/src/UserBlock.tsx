@@ -1,6 +1,6 @@
 import React from 'react';
-import { makeStyles } from 'tss-react/mui';
-import Grid from '@mui/material/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import { serverUrlLogOut } from './Interface/ServerRouteConst';
 import { post } from './Utils/Fetch';
 import Loader from './components/Common/Loader/Loader';
@@ -11,21 +11,20 @@ import { ApplicationState } from './store/index';
 import { connect, ConnectedProps } from 'react-redux';
 import { SetAuth, AuthStatusState } from './store/AuthStore';
 import ShowError from './components/Common/ShowError/ShowError';
-import OutputIcon from '@mui/icons-material/Output';
-import InputIcon from '@mui/icons-material/Input';
+import OutputIcon from '@material-ui/icons/ExitToApp';
+import InputIcon from '@material-ui/icons/Input';
 import { MainAuthPath } from './Interface/RouteConst';
 
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    container: {
-      color: "#fff",
-    },
-    btn: {
-      cursor: "pointer"
-    }
+const useStyles = makeStyles((theme) => ({
+  container: {
+    color: "#fff",
+  },
+  btn: {
+    cursor: "pointer"
   }
-});
+}
+));
 
 
 const mapStateToProps = (state: ApplicationState) => ({
@@ -55,7 +54,7 @@ const getAuthLogin = (appAuth: AuthStatusState | undefined): string | null => {
 
 const UserHeader = (props: PropsFromRedux) => {
   let history = useHistory();
-  const { classes } = useStyles();
+  const classes = useStyles();
 
   const [status, setStatus] = useState<IComponentStatus>('idle');
   const [error, setError] = useState<Error | null>(null);
@@ -99,7 +98,7 @@ const UserHeader = (props: PropsFromRedux) => {
       <div className={classes.container}>
         <Grid container alignItems="center" justifyContent="flex-end" spacing={0} >
           <Grid item={true} lg={11} md={11} xs={11} sm={11} >
-              {getAuthLogin(props.appAuth)}
+            {getAuthLogin(props.appAuth)}
           </Grid>
           <Grid item={true} lg={1} md={1} xs={1} sm={1} >
             <Grid container direction="row" alignItems="center" justifyContent="flex-end" >

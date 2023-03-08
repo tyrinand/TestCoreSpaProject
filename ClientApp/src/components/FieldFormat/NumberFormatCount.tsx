@@ -1,19 +1,14 @@
 import * as React from 'react';
-import { NumericFormat, NumericFormatProps } from 'react-number-format';
+import { NumberFormatCustomProps } from './../../Interface/MainTypes'; 
+import NumberFormat from 'react-number-format';
 
-interface CustomProps {
-  onChange: (event: { target: { name: string; value: string } }) => void;
-  name: string;
-}
-
-const NumberFormatCount = React.forwardRef<NumericFormatProps, CustomProps>(
-  function NumericFormatCustom(props, ref) {
-    const { onChange, ...other } = props;
-
+const NumberFormatCount = (props: NumberFormatCustomProps) =>{
+    const { inputRef, onChange, ...other } = props;
+  
     return (
-      <NumericFormat
+      <NumberFormat
         {...other}
-        getInputRef={ref}
+        getInputRef={inputRef}
         onValueChange={(values) => {
           onChange({
             target: {
@@ -23,11 +18,10 @@ const NumberFormatCount = React.forwardRef<NumericFormatProps, CustomProps>(
           });
         }}
         thousandSeparator
-        valueIsNumericString
+        isNumericString
         allowNegative = {false}
       />
     );
-  },
-);
+}
 
 export default NumberFormatCount;

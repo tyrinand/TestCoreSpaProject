@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PaginationItem from '@mui/material/PaginationItem';
-import Pagination from '@mui/material/Pagination';
-import Grid from '@mui/material/Grid';
+import PaginationItem from '@material-ui/lab/PaginationItem';
+import Pagination from '@material-ui/lab/Pagination';
+import Grid from '@material-ui/core/Grid';
 
 interface IPaginateBtn {
   page: number,

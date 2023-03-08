@@ -3,42 +3,41 @@ import { get } from './../../Utils/Fetch';
 import { useState, useEffect } from 'react';
 import { IClient, IComponentStatus, PagesData } from './../../Interface/MainTypes';
 import { serverUrlClients } from './../../Interface/ServerRouteConst';
-import { makeStyles } from 'tss-react/mui';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { clientsRoute, clientEditPath, clientCreateRoute } from './../../Interface/RouteConst';
 import Loader from '../Common/Loader/Loader';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import CreateBtn from './../Buttons/CreateBtn';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import TableBody from '@mui/material/TableBody';
+import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import TableBody from '@material-ui/core/TableBody';
 import ClientModal from './ClientModal';
 import EditBtn from '../Buttons/EditBtn';
 import DeleteBtn from '../Buttons/DeleteBtn';
 import PaginationBtn from './../Buttons/PaginationBtn';
 import ShowError from '../Common/ShowError/ShowError';
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    titles:
-    {
-      fontWeight: 'bold',
-      width: "33%"
-    },
-    icons: {
-      cursor: 'pointer'
-    }
+const useStyles = makeStyles({
+  titles:
+  {
+    fontWeight: 'bold',
+    width: "33%"
+  },
+  icons: {
+    cursor: 'pointer'
   }
-});
+}
+);
 
 const Clients = () => {
   let history = useHistory();
-  const { classes } = useStyles();
+  const classes = useStyles();
   const { page } = useParams<{ page?: string }>();
   const pageNum: number = page ? Number(page) : 1;
 
@@ -80,11 +79,10 @@ const Clients = () => {
   }
 
 
-  if (error)
-  {
+  if (error) {
     return <ShowError message={error.stack ? error.stack : error.message} />
   }
-      
+
 
   if (status === 'pending' || status === 'idle')
     return <Loader />

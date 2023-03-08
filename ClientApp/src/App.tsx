@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import { makeStyles } from 'tss-react/mui';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import './App.css';
 import { get } from './Utils/Fetch';
 import { lazy, Suspense, useEffect, useState } from 'react';
@@ -19,8 +19,7 @@ import PrivateRouts from './PrivateRouts';
 import { salesRoute, softRoute, clientsRoute, MainAuthPath } from './Interface/RouteConst';
 import UserBlock from './UserBlock';
 
-const useStyles = makeStyles()((theme) => {
-  return {
+const useStyles = makeStyles( (theme) =>  ({
     root: {
       display: 'flex',
       flexDirection: 'column',
@@ -40,7 +39,7 @@ const useStyles = makeStyles()((theme) => {
       flexWrap: 'wrap',
     }
   }
-});
+));
 
 const mapStateToProps = (state: ApplicationState) => ({
   appAuth: state.appAuth
@@ -68,7 +67,7 @@ const getAuhtStatus = (appAuth: AuthStatusState | undefined): boolean => {
 function App(props: PropsFromRedux) {
   const [status, setStatus] = useState<IComponentStatus>('idle');
   const [error, setError] = useState<Error | null>(null);
-  const { classes } = useStyles();
+  const classes = useStyles();
 
   useEffect(() => {
     get<IAuthStatus>(serverUrlAuth)

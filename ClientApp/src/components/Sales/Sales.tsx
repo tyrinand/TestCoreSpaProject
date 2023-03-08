@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from 'tss-react/mui';
+import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ISalesView, IComponentStatus, PagesData } from './../../Interface/MainTypes';
@@ -8,23 +8,22 @@ import { get } from './../../Utils/Fetch';
 import { salesRoute, salesEditPath, salesCreateRoute } from './../../Interface/RouteConst';
 import Loader from '../Common/Loader/Loader';
 import ShowError from '../Common/ShowError/ShowError';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import CreateBtn from './../Buttons/CreateBtn';
-import Paper from '@mui/material/Paper';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableBody from '@mui/material/TableBody';
+import Paper from '@material-ui/core/Paper';
+import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableBody from '@material-ui/core/TableBody';
 import SaleModal from './SaleModal';
 import EditBtn from '../Buttons/EditBtn';
 import DeleteBtn from '../Buttons/DeleteBtn';
 import PaginationBtn from './../Buttons/PaginationBtn';
 
-const useStyles = makeStyles()((theme) => {
-  return {
+const useStyles = makeStyles({
     titles: {
       fontWeight: 'bold',
       width: "14%"
@@ -32,13 +31,12 @@ const useStyles = makeStyles()((theme) => {
     icons: {
       cursor: "pointer"
     }
-  }
 })
 
 const Sales = () => {
 
   let history = useHistory();
-  const { classes } = useStyles();
+  const classes = useStyles();
 
   const { page } = useParams<{ page?: string }>();
   const pageNum: number = page ? Number(page) : 1;

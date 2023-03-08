@@ -1,14 +1,14 @@
 import React from 'react';
 import { ISalesView } from './../../Interface/MainTypes';
-import { makeStyles } from 'tss-react/mui';
-import Modal from '@mui/material/Modal';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import Grid from '@mui/material/Grid';
-import CloseIcon from '@mui/icons-material/Close';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import Grid from '@material-ui/core/Grid';
+import CloseIcon from '@material-ui/icons/Close';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 import { useState } from 'react';
 
 interface ISaleModalProps {
@@ -16,8 +16,7 @@ interface ISaleModalProps {
   iconClassName: string
 }
 
-const useStyles = makeStyles()((theme) => {
-  return {
+const useStyles = makeStyles({
     paper: {
       position: 'absolute',
       width: 500,
@@ -37,10 +36,10 @@ const useStyles = makeStyles()((theme) => {
       width: "70%"
     }
   }
-});
+);
 
 const SaleModal = (props: ISaleModalProps) => {
-  const { classes } = useStyles();
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   const handelOpen = () => {
