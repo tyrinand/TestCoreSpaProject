@@ -60,7 +60,6 @@ namespace Eng
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       app.UseDeveloperExceptionPage();
-      app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseSpaStaticFiles();
       
